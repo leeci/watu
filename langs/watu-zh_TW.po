@@ -569,10 +569,17 @@ msgstr "作答錯誤的題目數量。"
 msgid ""
 "A rating of your performance - it could be 'Failed'(0-39%), 'Just "
 "Passed'(40%-50%), 'Satisfactory', 'Competent', 'Good', 'Excellent' and "
-"'Unbeatable'(100%)"
-msgstr ""
+"'Unbeatable'(100%)." 
+msgstr "" 
 "等第代表你的表現 - 它有'不及格'(0-39%)) 、'通過'(40%-50%)、'滿意'、'不"
 "錯'、'很好'、'非常好'、'優秀'和'完美'"
+
+#: views/exam_form.php:84 
+msgid "" 
+"The rating can be changed only by <a href=\"%s\" target=\"_blank" 
+"\">translating the plugin</a>. So we recommend you to use the grades " 
+"instead. They are fully configurable right from this page." 
+msgstr "" 
 
 #: views/exam_form.php:85
 msgid "The name of the quiz"
@@ -858,8 +865,16 @@ msgid "Back to exams list"
 msgstr "回到題組列表"
 
 #: views/takings.php:8
+msgid "Filter/search these records" 
+msgstr "" 
+
+#: views/takings.php:8
 msgid "Export as CSV (semicolon delimited)"
 msgstr "匯出CSV檔"
+
+#: views/takings.php:10 
+msgid "(Filters apply)" 
+msgstr "" 
 
 #: views/takings.php:10
 msgid "Delete all user-submitted data for this exam"
@@ -885,6 +900,71 @@ msgstr "結果"
 msgid "Details"
 msgstr "詳細資訊"
 
+#: views/takings.php:19 
+msgid "Username" 
+msgstr "" 
+ 
+#: views/takings.php:20 views/takings.php:26 views/takings.php:32 
+#: views/takings.php:38 
+msgid "Equals" 
+msgstr "" 
+ 
+#: views/takings.php:21 views/takings.php:27 views/takings.php:33 
+msgid "Starts with" 
+msgstr "" 
+ 
+#: views/takings.php:22 views/takings.php:28 views/takings.php:34 
+msgid "Ends with" 
+msgstr "" 
+ 
+#: views/takings.php:23 views/takings.php:29 views/takings.php:35 
+msgid "Contains" 
+msgstr "" 
+ 
+#: views/takings.php:25 
+msgid "Email" 
+msgstr "" 
+ 
+#: views/takings.php:31 
+msgid "IP Address" 
+msgstr "" 
+ 
+#: views/takings.php:37 
+msgid "Date Taken" 
+msgstr "" 
+ 
+#: views/takings.php:39 
+msgid "Is before" 
+msgstr "" 
+ 
+#: views/takings.php:40 
+msgid "Is after" 
+msgstr "" 
+ 
+#: views/takings.php:42 
+msgid "Points received" 
+msgstr "" 
+ 
+#: views/takings.php:43 
+msgid "Equal" 
+msgstr "" 
+ 
+#: views/takings.php:44 
+msgid "Are less than" 
+msgstr "" 
+ 
+#: views/takings.php:45 
+msgid "Are more than" 
+msgstr "" 
+ 
+#: views/takings.php:48 
+msgid "Search/Filter" 
+msgstr "" 
+ 
+#: views/takings.php:49 
+msgid "Clear Filters" 
+msgstr "" 
+
 #: views/takings.php:24
 msgid "n/a"
 msgstr "無"
@@ -902,7 +982,7 @@ msgid "Next page"
 msgstr "下一頁"
 
 #: views/takings.php:35
-msgid "No user has taken this quiz yet."
+msgid "No results match your search criteria."
 msgstr "還沒有任何的使用者在這個題組上作答"
 
 #: views/takings.php:50
