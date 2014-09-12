@@ -17,10 +17,8 @@ function watu_exams() {
 	<div class="wrap">
 	<h2><?php printf(__("Manage %s", 'watu'), __('Quizzes', 'watu')); ?></h2>
 	
-		<div class="postbox-container" style="width:73%;margin-right:2%;">
-		
-		<p><strong><?php _e('Watu for Wordpress is a light version of', 'watu')?> <a href="http://calendarscripts.info/watupro" target="_blank">WatuPRO</a>.</strong></p>
-		
+		<div class="postbox-container" style="margin-right:2%;">
+                
 		<p><?php _e('Go to', 'watu')?> <a href="options-general.php?page=watu.php"><?php _e('Watu Settings', 'watu')?></a>
 			&nbsp;|&nbsp;
 		<a href="admin.php?page=watu_exam&amp;action=new"><?php _e("Create New Quiz", 'watu')?></a></p>
@@ -91,11 +89,6 @@ function watu_exams() {
 		</table>
 		
 			<p><a href="admin.php?page=watu_exam&amp;action=new"><?php _e("Create New Quiz", 'watu')?></a></p>
-			
-			<p><?php _e('Get free traffic to your quizzes by submitting them to', 'watu')?> <a href="http://calendarscripts.info/quizzes/" target="_blank"><?php _e('our directory.')?></a></p>
-		</div>
-		<div id="watu-sidebar">
-				<?php include(WATU_PATH."/views/sidebar.php");?>
 		</div>
 	</div>	
 <?php } 

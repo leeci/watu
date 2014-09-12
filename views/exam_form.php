@@ -13,7 +13,7 @@
 <div class="wrap">
 <h2><?php _e(ucfirst($action) . " Quiz", 'watu'); ?></h2>
 
-<div class="postbox-container" style="width:73%;margin-right:2%;">	
+<div class="postbox-container" style="margin-right:2%;">	
 
 	<p><a href="tools.php?page=watu_exams"><?php _e('Back to quizzes', 'watu')?></a></p>
 	
@@ -100,9 +100,5 @@
 	</div>
 	</form>
 	
-	</div>
-	
-	<div id="watu-sidebar">
-			<?php include(WATU_PATH."/views/sidebar.php");?>
-	</div>
+	</div>	
 </div>
