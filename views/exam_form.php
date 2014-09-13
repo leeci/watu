@@ -34,6 +34,8 @@
 			<p><input id="watuSingle" type="checkbox" name="single_page" value="1" <?php if(!empty($dquiz->single_page)) echo 'checked'?>> <label for="watuSingle"><?php _e("Show all questions on single page", 'watu');?></label></p>
 			
 			<p><input type="checkbox" name="require_login" value="1" <?php if(!empty($dquiz->require_login)) echo 'checked'?>> <label><?php _e('Require user login (displays login and / or register link depending on your blog settings.)', 'watu')?></label></p>
+                        
+                        <p><input type="text" name="max_num" style="width:40px" value="<?php if(!empty($dquiz->max_num)){ echo $dquiz->max_num; } else {echo "0";} ?>" > <label><?php _e('Max num of ques.', 'watu')?></label></p>
 			
 			<p><input type="checkbox" name="notify_admin" value="1" <?php if(!empty($dquiz->notify_admin)) echo 'checked'?>> <label><?php _e('Notify me when someone takes this quiz (the email goes to the address given in your WordPress Settings page).', 'watu')?></label></p>
 		</div>
@@ -64,7 +66,7 @@
 	<?php endforeach;
 	if( count($grades)==0 ){
 	 ?>
-	 <p><img class="gradeclose" onclick="jQuery(this).parent().remove();" src="<?php echo plugins_url('watu/close.jpg')?>" alt='close' /><label><?php _e('Grade Title:', 'watu')?></label><input type='text' name='gradetitle[]' id="title" value='' /><br /><label><?php _e('Description:', 'watu')?></label><br /><textarea name='grade_description[]' rows='5'></textarea><br /><label>Grade from:<input type='text' class='numeric' name='grade_from[]' value='' /></label><label><?php _e('Grade to:', 'watu')?><input type='text' class='numeric' name='grade_to[]' value='' /></label></p>
+	 <p><img class="gradeclose" onclick="jQuery(this).parent().remove();" src="<?php echo plugins_url('watu/close.jpg')?>" alt='close' /><label><?php _e('Grade Title:', 'watu')?></label><input type='text' name='gradetitle[]' id="title" value='' /><br /><label><?php _e('Description:', 'watu')?></label><br /><textarea name='grade_description[]' rows='5'></textarea><br /><label><?php _e('Grade from:', 'watu')?><input type='text' class='numeric' name='grade_from[]' value='' /></label><label><?php _e('Grade to:', 'watu')?><input type='text' class='numeric' name='grade_to[]' value='' /></label></p>
 	 <?php } ?>
 	</div><p><a href="javascript:;" onclick="addGrade()" style="padding:4px; margin-left:10px;"><?php _e('Add another grade', 'watu')?></a></p></div>
 	

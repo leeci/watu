@@ -43,6 +43,10 @@ if(isset($_REQUEST['do']) and $_REQUEST['do']) { // Quiz Reuslts.
 	$result = '';
 	$result .= "<p>" . __('All the questions in the exam along with their answers are shown below. Your answers are bolded. The correct answers have a green background while the incorrect ones have a red background.', 'watu') . "</p>";
 
+        $questions = $wpdb->get_results($wpdb->prepare("SELECT * FROM ".WATU_QUESTIONS." 
+        WHERE exam_id=%d", $exam_id));
+        $num_questions = sizeof($questions);
+
 	// we should reorder the questions in the same way they came from POST because exam might be randomized	
 	$_exam = new WatuExam();
 	$questions = $_exam->reorder_questions($questions, $_POST['question_id']);
@@ -154,6 +158,24 @@ if(isset($_REQUEST['do']) and $_REQUEST['do']) { // Quiz Reuslts.
 $question_count = 1;
 $question_ids = '';
 $output = $answer_class = '';
+
+       $order_sql = $exam->randomize?"ORDER BY RAND()":"ORDER BY ID";
+
+$max_questions = get_option('max_num');
+if(!isset($exam->max_num) or $exam->max_num == 0) $answer_display = $answer_display; // assign the default
+else $max_questions = $exam->max_num;
+$q_limit_sql = $exam->max_num == 0?"":"LIMIT $max_questions";
+
+$questions = $wpdb->get_results($wpdb->prepare("SELECT * FROM ".WATU_QUESTIONS." 
+		WHERE exam_id=%d $order_sql $q_limit_sql", $exam_id));
+$num_questions = sizeof($questions);		
+		
+if($questions) {
+	if(!isset($GLOBALS['watu_client_includes_loaded']) and !isset($_REQUEST['do']) ) {
+		$GLOBALS['watu_client_includes_loaded'] = true; // Make sure that this code is not loaded more than once.
+        }
+}
+
 $answers_orderby = empty($exam->randomize_answers) ? 'sort_order, ID' : 'RAND()';
 foreach ($questions as $qct => $ques) {
 	$output .= "<div class='watu-question' id='question-$question_count'>";

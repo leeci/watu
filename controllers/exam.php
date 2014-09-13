@@ -102,10 +102,10 @@ function watu_exam() {
 			$exam_id = $_REQUEST['quiz'];
 			$wpdb->query("delete from ".WATU_GRADES." where exam_id=".$_REQUEST['quiz']);
 			$wpdb->query($wpdb->prepare("UPDATE ".WATU_EXAMS."
-				SET name=%s, description=%s,final_screen=%s, randomize=%d, single_page=%d, 
+				SET name=%s, description=%s,final_screen=%s, max_num=%d, randomize=%d, single_page=%d,  
 				show_answers=%d, require_login=%d, notify_admin=%d, randomize_answers=%d   
 				WHERE ID=%d", $_POST['name'], $_POST['description'], $_POST['content'], 
-				@$_POST['randomize'], @$_POST['single_page'], $_POST['show_answers'], 
+				@$_POST['max_num'], @$_POST['randomize'], @$_POST['single_page'], $_POST['show_answers'], 
 				@$_POST['require_login'], @$_POST['notify_admin'], @$_POST['randomize_answers'],
 				$_POST['quiz']));
 			
@@ -113,10 +113,10 @@ function watu_exam() {
 		
 		} else {
 			$wpdb->query($wpdb->prepare("INSERT INTO ".WATU_EXAMS." 
-			(name, description, final_screen,  added_on, randomize, single_page, show_answers, require_login, 
+			(name, description, final_screen,  added_on, max_num, randomize, single_page, show_answers, require_login, 
 			notify_admin, randomize_answers) 
-			VALUES(%s, %s, %s, NOW(), %d, %d, %d, %d, %d, %d)", 
-			$_POST['name'], $_POST['description'], $_POST['content'], @$_POST['randomize'], @$_POST['single_page'], 
+			VALUES(%s, %s, %s, NOW(), %d, %d, %d, %d, %d, %d, %d)", 
+			$_POST['name'], $_POST['description'], $_POST['content'], @$_POST['max_num'], @$_POST['randomize'], @$_POST['single_page'], 
 			$_POST['show_answers'], @$_POST['require_login'], @$_POST['notify_admin'], @$_POST['randomize_answers']));
 			$exam_id = $wpdb->insert_id;
 			if($exam_id == 0 ) $wp_redirect = 'tools.php?page=watu_exams&message=fail';
