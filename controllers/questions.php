@@ -214,15 +214,11 @@ function watu_questions() {
 		<div class="postbox-container" style="margin-right:2%;">
 		
 		<p><a href="tools.php?page=watu_exams"><?php _e('Back to quizzes', 'watu')?></a> &nbsp; <a href="admin.php?page=watu_exam&quiz=<?php echo $_GET['quiz']?>&action=edit"><?php _e('Edit this quiz', 'watu')?></a> &nbsp;
-		<a href="admin.php?page=watu_grades&quiz_id=<?php echo $_GET['quiz']?>"><?php _e('Manage Grades / Results', 'watu')?></p>
-		
-		<p><a href="tools.php?page=watu_exams"><?php _e('Back to quizzes', 'watu')?></a> &nbsp; <a href="admin.php?page=watu_exam&quiz=<?php echo $_GET['quiz']?>&action=edit"><?php _e('Edit this quiz', 'watu')?></a> &nbsp; <a href="admin.php?page=watu_question&amp;action=import&amp;quiz=<?php echo $_REQUEST['quiz'] ?>"><?php _e('Import Quiz', 'watu')?></a>
+		<a href="admin.php?page=watu_grades&quiz_id=<?php echo $_GET['quiz']?>"><?php _e('Manage Grades / Results', 'watu')?></a> &nbsp; <a href="admin.php?page=watu_question&amp;action=import&amp;quiz=<?php echo $_REQUEST['quiz'] ?>"><?php _e('Import Quiz', 'watu')?></a>
                 
                 <?php if($count):?>
 	&nbsp;|&nbsp;
-	<a href="#" onclick="WatuDelAll();return false;"><?php _e('Delete all questions for this exam', 'watu')?></a><?php endif;?>	
-
-		</p>
+	<a href="#" onclick="WatuDelAll();return false;"><?php _e('Delete all questions for this exam', 'watu')?></a><?php endif;?></p>
                 
 		<?php
 		wp_enqueue_script( 'listman' );
