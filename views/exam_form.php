@@ -1,9 +1,4 @@
 <script type="text/javascript">
-	function addGrade(){
-		var newGrade = "<p><img class='gradeclose' onclick='jQuery(this).parent().remove();' src='<?php echo plugins_url('watu/close.jpg') ?>' alt='close' /><label><?php _e('Grade Title:', 'watu')?></label><input type='text' name='gradetitle[]' id='title' value='' /><br /><label><?php _e('Description:', 'watu')?></label><br /><textarea name='grade_description[]' rows='5'></textarea><br /><label><?php _e('From (points):', 'watu')?> <input type='text' class='numeric' name='grade_from[]' value='' /></label><label><?php _e('To (points):', 'watu')?> <input type='text'  name='grade_to[]' class='numeric' value='' /></label></p>";
-		
-		jQuery('#gradecontent').append(newGrade);		
-	}
 	function validate() {
 		var ret= true;
 		return ret;
@@ -15,7 +10,12 @@
 
 <div class="postbox-container" style="width:73%;margin-right:2%;">	
 
-	<p><a href="tools.php?page=watu_exams"><?php _e('Back to quizzes', 'watu')?></a></p>
+	<p><a href="tools.php?page=watu_exams"><?php _e('Back to quizzes', 'watu')?></a>
+	<?php if(!empty($dquiz->ID)):?>
+		| <a href="admin.php?page=watu_questions&quiz=<?php echo $dquiz->ID?>"><?php _e('Manage Questions', 'watu')?></a>
+		| <a href="admin.php?page=watu_grades&quiz_id=<?php echo $dquiz->ID?>"><?php _e('Manage Grades / Results', 'watu')?></a>
+	<?php endif;?>	
+	</p>
 	
 	<form name="post" action="admin.php?page=watu_exam" method="post" id="post" onsubmit="return validate()">
 	<div>	
@@ -55,18 +55,6 @@
 	<p><?php _e('If provided, description shows on top of the quiz. It can optionally be included in the final output as well.', 'watu')?></p>
 	</div></div>
 	
-	<style type="text/css"> #gradecontent p{border-bottom:1px dotted #ccc;padding-bottom:3px;} #gradecontent label{padding: 5px 10px;} #gradecontent textarea{width:96%;margin-left:10px;} #gradecontent p img.gradeclose{ border:0 none; float:right; } </style>
-	<div class="postbox" id="gradediv">
-	<h3>&nbsp;<?php _e('Grading', 'watu') ?></h3>
-	<div class="inside" id="gradecontent">
-	<?php foreach($grades as $row ): ?>
-	<p><img class="gradeclose" onclick="jQuery(this).parent().remove();" src="<?php echo plugins_url('watu/close.jpg')?>" alt='close' /><label><?php _e('Grade Title:', 'watu')?></label><input type='text' name='gradetitle[]' id="title" value='<?php echo stripslashes($row->gtitle); ?>' /><br /><label><?php _e('Description:', 'watu')?></label><br /><textarea name='grade_description[]' rows='5'><?php echo stripslashes($row->gdescription); ?></textarea><br /><label><?php _e('From points:', 'watu')?> <input type='text' class='numeric' name='grade_from[]' value='<?php echo stripslashes($row->gfrom); ?>' /></label><label><?php _e('To points:', 'watu')?> <input type='text' class='numeric' name='grade_to[]' value='<?php echo stripslashes($row->gto); ?>' /></label></p>
-	<?php endforeach;
-	if( count($grades)==0 ){
-	 ?>
-	 <p><img class="gradeclose" onclick="jQuery(this).parent().remove();" src="<?php echo plugins_url('watu/close.jpg')?>" alt='close' /><label><?php _e('Grade Title:', 'watu')?></label><input type='text' name='gradetitle[]' id="title" value='' /><br /><label><?php _e('Description:', 'watu')?></label><br /><textarea name='grade_description[]' rows='5'></textarea><br /><label>Grade from:<input type='text' class='numeric' name='grade_from[]' value='' /></label><label><?php _e('Grade to:', 'watu')?><input type='text' class='numeric' name='grade_to[]' value='' /></label></p>
-	 <?php } ?>
-	</div><p><a href="javascript:;" onclick="addGrade()" style="padding:4px; margin-left:10px;"><?php _e('Add another grade', 'watu')?></a></p></div>
 	
 	<div id="<?php echo user_can_richedit() ? 'postdivrich' : 'postdiv'; ?>" class="postarea postbox">
 	<h3>&nbsp;<?php _e('Final Screen', 'watu') ?></h3>

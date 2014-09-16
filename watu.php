@@ -4,7 +4,7 @@ Plugin Name: Watu
 Plugin URI: http://calendarscripts.info/watu-wordpress.html
 Description: Create exams and quizzes and display the result immediately after the user takes the exam. Watu for Wordpress is a light version of <a href="http://calendarscripts.info/watupro/" target="_blank">WatuPRO</a>. Check it if you want to run fully featured exams with data exports, student logins, timers, random questions and more. Free support and upgrades are available. Go to <a href="options-general.php?page=watu.php">Watu Settings</a> or <a href="tools.php?page=watu_exams">Manage Your Exams</a> 
 
-Version: 2.4.6
+Version: 2.4.7
 Author: Kiboko Labs
 License: GPLv2 or later
 
@@ -29,6 +29,7 @@ include( WATU_PATH.'/controllers/exam.php');
 include( WATU_PATH.'/controllers/questions.php');
 include( WATU_PATH.'/controllers/takings.php');
 include( WATU_PATH.'/controllers/ajax.php');
+include( WATU_PATH.'/controllers/grades.php');
 include( WATU_PATH.'/models/question.php');
 include( WATU_PATH.'/lib/functions.php');
 include( WATU_PATH."/models/exam.php");
@@ -97,6 +98,7 @@ function watu_add_menu_links() {
 	add_submenu_page(NULL, __('Manage Exams', 'watu'), __('Watu Exams', 'watu'), $view_level , 'watu_exam', 'watu_exam');
 	add_submenu_page(NULL, __('Manage Questions', 'watu'), __('Manage Questions', 'watu'), $view_level , 'watu_questions', 'watu_questions');
 	add_submenu_page(NULL, __('Add/Edit Question', 'watu'), __('Add/Edit Question', 'watu'), $view_level , 'watu_question', 'watu_question');
+	add_submenu_page(NULL, __('Manage Grades', 'watu'), __('Manage Grades', 'watu'), $view_level , 'watu_grades', 'watu_grades');
 	
 	$code_pages = array('question_form.php');
 	foreach($code_pages as $code_page) {

@@ -16,7 +16,6 @@ form.quiz-form {
 	margin-top:20px;
 }
 
-
 .answer span {
 	padding-right:20px;
 }
@@ -27,7 +26,6 @@ form.quiz-form {
 .correct-answer span {
 	background:url(correct.png) no-repeat right top;
 }
-
 
 .watu-sidebox
 {
@@ -72,4 +70,8 @@ form.quiz-form {
 	min-width: 150px;
 	display:block;
 	float:left;
+}
+
+.watu-padded {
+	padding: 10px;
 }

@@ -58,7 +58,8 @@ function watu_questions() {
 	
 		<div class="postbox-container" style="width:73%;margin-right:2%;">
 		
-		<p><a href="tools.php?page=watu_exams"><?php _e('Back to quizzes', 'watu')?></a> &nbsp; <a href="admin.php?page=watu_exam&quiz=<?php echo $_GET['quiz']?>&action=edit"><?php _e('Edit this quiz', 'watu')?></a></p>
+		<p><a href="tools.php?page=watu_exams"><?php _e('Back to quizzes', 'watu')?></a> &nbsp; <a href="admin.php?page=watu_exam&quiz=<?php echo $_GET['quiz']?>&action=edit"><?php _e('Edit this quiz', 'watu')?></a> &nbsp;
+		<a href="admin.php?page=watu_grades&quiz_id=<?php echo $_GET['quiz']?>"><?php _e('Manage Grades / Results', 'watu')?></p>
 		
 		<?php
 		wp_enqueue_script( 'listman' );

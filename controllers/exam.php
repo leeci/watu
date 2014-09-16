@@ -33,8 +33,8 @@ function watu_exams() {
 				<th scope="col"><div style="text-align: center;"><?php _e('ID', 'watu') ?></div></th>
 				<th scope="col"><?php _e('Title', 'watu') ?></th>
 				<th scope="col"><?php _e('Shortcode', 'watu') ?></th>
-				<th scope="col"><?php _e('Number Of Questions', 'watu') ?></th>
-				<th scope="col"><?php _e('Taken', 'watu') ?></th>
+				<th scope="col"><?php _e('No. Questions', 'watu') ?></th>				
+				<th scope="col"><?php _e('View Results', 'watu') ?></th>
 				<th scope="col" colspan="3"><?php _e('Action', 'watu') ?></th>
 			</tr>
 			</thead>
@@ -76,8 +76,9 @@ function watu_exams() {
 				if(!empty($quiz->post)) echo "</a>";?></td>
         <td><input type="text" size="8" readonly onclick="this.select()" value="[WATU <?php echo $quiz->ID ?>]"></td>
 				<td><?php echo $quiz->question_count ?></td>
-				<td><a href="admin.php?page=watu_takings&exam_id=<?php echo $quiz->ID?>"><?php echo $quiz->taken?> <?php _e('times', 'watu')?></a></td>
-				<td><a href='admin.php?page=watu_questions&amp;quiz=<?php echo $quiz->ID?>' class='edit'><?php _e('Manage Questions', 'watu')?></a></td>
+				<td><a href="admin.php?page=watu_takings&exam_id=<?php echo $quiz->ID?>"><?php printf(__('Taken %d times', 'watu'), $quiz->taken)?></a></td>
+				<td><a href='admin.php?page=watu_questions&amp;quiz=<?php echo $quiz->ID?>' class='edit'><?php _e('Manage Questions', 'watu')?></a><br>
+				<a href='admin.php?page=watu_grades&amp;quiz_id=<?php echo $quiz->ID?>' class='edit'><?php _e('Manage Grades', 'watu')?></a></td>
 				<td><a href='admin.php?page=watu_exam&amp;quiz=<?php echo $quiz->ID?>&amp;action=edit' class='edit'><?php _e('Edit', 'watu'); ?></a></td>
 				<td><a href='tools.php?page=watu_exams&amp;action=delete&amp;quiz=<?php echo $quiz->ID?>' class='delete' onclick="return confirm('<?php echo  addslashes(__("You are about to delete this quiz? This will delete all the questions and answers within this quiz. Press 'OK' to delete and 'Cancel' to stop.", 'watu'))?>');"><?php _e('Delete', 'watu')?></a></td>
 				</tr>
@@ -107,7 +108,6 @@ function watu_exam() {
 	if(isset($_REQUEST['submit'])) {
 		if($_REQUEST['action'] == 'edit') { //Update goes here
 			$exam_id = $_REQUEST['quiz'];
-			$wpdb->query("delete from ".WATU_GRADES." where exam_id=".$_REQUEST['quiz']);
 			$wpdb->query($wpdb->prepare("UPDATE ".WATU_EXAMS."
 				SET name=%s, description=%s,final_screen=%s, randomize=%d, single_page=%d, 
 				show_answers=%d, require_login=%d, notify_admin=%d, randomize_answers=%d   
@@ -129,32 +129,7 @@ function watu_exam() {
 			if($exam_id == 0 ) $wp_redirect = 'tools.php?page=watu_exams&message=fail';
 			$wp_redirect = 'admin.php?page=watu_questions&message=new_quiz&quiz='.$exam_id;
 		}
-		
-		if( $exam_id>0 and isset($_REQUEST['gradetitle']) and is_array($_REQUEST['gradetitle']) ) {
-			$sql = "insert into {$wpdb->prefix}watu_grading (exam_id, gtitle, gdescription, gfrom, gto) values ";
-			$saveGrade = false;
-			$descArr = $_REQUEST['grade_description'];
-			$fromArr = $_REQUEST['grade_from'];
-			$toArr = $_REQUEST['grade_to'];
-			
-			foreach($_REQUEST['gradetitle'] as $key=>$title) {			
-				$title = esc_sql($title);
-				$desc = esc_sql( $descArr[$key] );
-				$from =  $fromArr[$key];
-				$to =  $toArr[$key];
 				
-				if( !empty($title)  && is_numeric($from) && is_numeric($to) ) {
-					$saveGrade = true;
-					$sql .= " ( $exam_id, '$title' , '$desc', $from, $to), ";
-				} else { $errorPartial= true;}
-			}
-		
-			if( $saveGrade) {
-				$sql = preg_replace('/,\s$/', '', $sql);	
-				$out = $wpdb->query($sql);				
-			} 
-		} //end grading block
-		
 		$wp_redirect = admin_url($wp_redirect);
 		
 		do_action('watu_exam_saved', $exam_id);
