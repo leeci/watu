@@ -11,7 +11,7 @@
 	&nbsp;|&nbsp;
 	<a href="#" onclick="WatuDelAll();return false;"><?php _e('Delete all user-submitted data for this exam', 'watu')?></a><?php endif;?></p>	
 
-	<div class="postbox-container" style="width:73%;margin-right:2%;">	
+	<div class="postbox-container" style="margin-right:2%;">	
 	<div id="filterForm" style="display:<?php echo $display_filters?'block':'none';?>;margin-bottom:10px;padding:5px;" class="widefat">
 	<form method="get" class="watu-admin" action="admin.php">
 	<input type="hidden" name="page" value="watu_takings">
@@ -63,7 +63,7 @@
 				<td><?php echo $taking->points?></td>
 				<td><?php echo apply_filters(WATU_CONTENT_FILTER, $taking->result)?></td>
 				<td><?php if(empty($taking->snapshot)): _e('n/a', 'watu');
-				else:?><a href="#" onclick="Watu.takingDetails('<?php echo $taking->ID?>');return false;"><?php _e('view', 'watupro')?></a><?php endif;?></td>
+				else:?><a href="#" onclick="Watu.takingDetails('<?php echo $taking->ID?>');return false;"><?php _e('view', 'watu')?></a><?php endif;?></td>
 				<td><a href="#" onclick="WatuDelTaking(<?php echo $taking->ID?>);return false;"><?php _e('Delete', 'watu')?></a></td></tr>
 			<?php endforeach;?>
 		</table>
@@ -76,10 +76,6 @@
 			<p><?php _e('No results match your search criteria.','watu')?></p>
 		<?php endif;?>
 	</div>	
-	
-	<div id="watu-sidebar">
-			<?php include(WATU_PATH."/views/sidebar.php");?>
-	</div>
 	
 	<form id="cleanupTakingsForm" method="post">
 		<input type="hidden" name="delete_all_takings" value="0">

@@ -8,7 +8,7 @@
 <div class="wrap">
 <h2><?php _e(ucfirst($action) . " Quiz", 'watu'); ?></h2>
 
-<div class="postbox-container" style="width:73%;margin-right:2%;">	
+<div class="postbox-container" style="margin-right:2%;">	
 
 	<p><a href="tools.php?page=watu_exams"><?php _e('Back to quizzes', 'watu')?></a>
 	<?php if(!empty($dquiz->ID)):?>
@@ -34,6 +34,8 @@
 			<p><input id="watuSingle" type="checkbox" name="single_page" value="1" <?php if(!empty($dquiz->single_page)) echo 'checked'?>> <label for="watuSingle"><?php _e("Show all questions on single page", 'watu');?></label></p>
 			
 			<p><input type="checkbox" name="require_login" value="1" <?php if(!empty($dquiz->require_login)) echo 'checked'?>> <label><?php _e('Require user login (displays login and / or register link depending on your blog settings.)', 'watu')?></label></p>
+                        
+                        <p><input type="text" name="max_num" style="width:40px" value="<?php if(!empty($dquiz->max_num)){ echo $dquiz->max_num; } else {echo "0";} ?>" > <label><?php _e('Max num of ques.', 'watu')?></label></p>
 			
 			<p><input type="checkbox" name="notify_admin" value="1" <?php if(!empty($dquiz->notify_admin)) echo 'checked'?>> <label><?php _e('Notify me when someone takes this quiz (the email goes to the address given in your WordPress Settings page).', 'watu')?></label></p>
 		</div>
@@ -54,7 +56,6 @@
 	<textarea name='description' rows='5' cols='50' style='width:100%'><?php echo stripslashes(@$dquiz->description); ?></textarea>
 	<p><?php _e('If provided, description shows on top of the quiz. It can optionally be included in the final output as well.', 'watu')?></p>
 	</div></div>
-	
 	
 	<div id="<?php echo user_can_richedit() ? 'postdivrich' : 'postdiv'; ?>" class="postarea postbox">
 	<h3>&nbsp;<?php _e('Final Screen', 'watu') ?></h3>
@@ -88,9 +89,5 @@
 	</div>
 	</form>
 	
-	</div>
-	
-	<div id="watu-sidebar">
-			<?php include(WATU_PATH."/views/sidebar.php");?>
-	</div>
+	</div>	
 </div>

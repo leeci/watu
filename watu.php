@@ -219,6 +219,7 @@ function watu_activate($update = false) {
 	}	
 	
 	watu_add_db_fields(array(
+                array("name"=>"max_num", "type"=>"SMALLINT NOT NULL DEFAULT 0"),
 		array("name"=>"randomize", "type"=>"TINYINT NOT NULL DEFAULT 0"),		
 		array("name"=>"single_page", "type"=>"TINYINT NOT NULL DEFAULT 0"),
 		array("name"=>"show_answers", "type"=>"TINYINT NOT NULL DEFAULT 100"),

@@ -17,10 +17,8 @@ function watu_exams() {
 	<div class="wrap">
 	<h2><?php printf(__("Manage %s", 'watu'), __('Quizzes', 'watu')); ?></h2>
 	
-		<div class="postbox-container" style="width:73%;margin-right:2%;">
-		
-		<p><strong><?php _e('Watu for Wordpress is a light version of', 'watu')?> <a href="http://calendarscripts.info/watupro" target="_blank">WatuPRO</a>.</strong></p>
-		
+		<div class="postbox-container" style="margin-right:2%;">
+                
 		<p><?php _e('Go to', 'watu')?> <a href="options-general.php?page=watu.php"><?php _e('Watu Settings', 'watu')?></a>
 			&nbsp;|&nbsp;
 		<a href="admin.php?page=watu_exam&amp;action=new"><?php _e("Create New Quiz", 'watu')?></a></p>
@@ -92,11 +90,6 @@ function watu_exams() {
 		</table>
 		
 			<p><a href="admin.php?page=watu_exam&amp;action=new"><?php _e("Create New Quiz", 'watu')?></a></p>
-			
-			<p><?php _e('Get free traffic to your quizzes by submitting them to', 'watu')?> <a href="http://calendarscripts.info/quizzes/" target="_blank"><?php _e('our directory.')?></a></p>
-		</div>
-		<div id="watu-sidebar">
-				<?php include(WATU_PATH."/views/sidebar.php");?>
 		</div>
 	</div>	
 <?php } 
@@ -109,10 +102,10 @@ function watu_exam() {
 		if($_REQUEST['action'] == 'edit') { //Update goes here
 			$exam_id = $_REQUEST['quiz'];
 			$wpdb->query($wpdb->prepare("UPDATE ".WATU_EXAMS."
-				SET name=%s, description=%s,final_screen=%s, randomize=%d, single_page=%d, 
+				SET name=%s, description=%s,final_screen=%s, max_num=%d, randomize=%d, single_page=%d,  
 				show_answers=%d, require_login=%d, notify_admin=%d, randomize_answers=%d   
 				WHERE ID=%d", $_POST['name'], $_POST['description'], $_POST['content'], 
-				@$_POST['randomize'], @$_POST['single_page'], $_POST['show_answers'], 
+				@$_POST['max_num'], @$_POST['randomize'], @$_POST['single_page'], $_POST['show_answers'], 
 				@$_POST['require_login'], @$_POST['notify_admin'], @$_POST['randomize_answers'],
 				$_POST['quiz']));
 			
@@ -120,10 +113,10 @@ function watu_exam() {
 		
 		} else {
 			$wpdb->query($wpdb->prepare("INSERT INTO ".WATU_EXAMS." 
-			(name, description, final_screen,  added_on, randomize, single_page, show_answers, require_login, 
+			(name, description, final_screen,  added_on, max_num, randomize, single_page, show_answers, require_login, 
 			notify_admin, randomize_answers) 
-			VALUES(%s, %s, %s, NOW(), %d, %d, %d, %d, %d, %d)", 
-			$_POST['name'], $_POST['description'], $_POST['content'], @$_POST['randomize'], @$_POST['single_page'], 
+			VALUES(%s, %s, %s, NOW(), %d, %d, %d, %d, %d, %d, %d)", 
+			$_POST['name'], $_POST['description'], $_POST['content'], @$_POST['max_num'], @$_POST['randomize'], @$_POST['single_page'], 
 			$_POST['show_answers'], @$_POST['require_login'], @$_POST['notify_admin'], @$_POST['randomize_answers']));
 			$exam_id = $wpdb->insert_id;
 			if($exam_id == 0 ) $wp_redirect = 'tools.php?page=watu_exams&message=fail';

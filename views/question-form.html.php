@@ -1,5 +1,5 @@
 <div class="wrap">
-<h2><?php echo ucfirst($action) . ' '. __("Question", 'watu'); ?></h2>
+<h2><?php echo __(ucfirst($action)) . ' '. __("Question", 'watu'); ?></h2>
 
 <p><a href="admin.php?page=watu_questions&quiz=<?php echo $_GET['quiz']?>"><?php _e('Back to questions', 'watu')?></a>
 &nbsp; <a href="tools.php?page=watu_exams"><?php _e('Back to quizzes', 'watu')?></a></p>
